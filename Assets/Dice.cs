@@ -6,8 +6,7 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     Rigidbody rb;
-    float timeSpentIdle;
-    [SerializeField] Quaternion targetRot;
+    float timeSpentIdle; 
 
     // Start is called before the first frame update
     void Start()
@@ -28,10 +27,7 @@ public class Dice : MonoBehaviour
             timeSpentIdle += Time.deltaTime;
             if (timeSpentIdle > 0.1f)
             {
-                rb.isKinematic = true;
-                //transform.position = RoundToNearest(transform.position);
-                var miniAngles = transform.eulerAngles / 90f;
-                targetRot = Quaternion.Euler(RoundToNearest(miniAngles) * 90);
+                rb.isKinematic = true; 
                 StartCoroutine(SnapToGrid());
             }
         }

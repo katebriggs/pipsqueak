@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1532751218344475397}
   - component: {fileID: 1946560346686513492}
   - component: {fileID: 8708312407129009164}
+  - component: {fileID: 8125270963436068739}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -62,7 +63,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86d3ac7e112f2b4dad8ba3b972ada16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRot: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8125270963436068739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6381602346785118007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4eed9da76c3f7940980599813f73b73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 1
+  Down: 6
+  Left: 4
+  Right: 3
+  Forward: 5
+  Back: 2
 --- !u!1001 &1747639325
 PrefabInstance:
   m_ObjectHideFlags: 0

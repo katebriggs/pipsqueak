@@ -15,13 +15,24 @@ public class PlayerBullet : MonoBehaviour
     {
         if(Physics.Raycast(transform.position, Direction, out var hit, Speed * Time.deltaTime))
         {
-            var bulletMod = hit.collider.GetComponent<IBulletModifier>();
+            var bulletMod = hit.collider.GetComponentInParent<IBulletModifier>();
             if(bulletMod != null){
+                print($"From {DamageValue}...");
+
                 DamageValue = bulletMod.ModifyBulletDamage(DamageValue);
+
+                print($"To {DamageValue}!");
+            }
+
+            var bulletReceiver = hit.collider.GetComponentInParent<IBulletReceiver>();
+            if(bulletReceiver != null)
+            {
+                bulletReceiver.TakeBulletDamage(DamageValue);
+                NumBounces = 0;
             }
 
             NumBounces--;
-            if (NumBounces < 1)
+            if (NumBounces < 0)
             {
                 FindObjectOfType<CombatManager>().EndState(CombatStateType.FireAway);
                 Destroy(gameObject);
@@ -33,7 +44,7 @@ public class PlayerBullet : MonoBehaviour
                 Direction = Vector3.Reflect(Direction, normal);
             }
 
-            transform.position = hit.point;
+            transform.position = hit.point + (Direction * Speed * Time.deltaTime);
         }
         else
         {
@@ -47,4 +58,9 @@ public class PlayerBullet : MonoBehaviour
 interface IBulletModifier
 {
     int ModifyBulletDamage(int currentDamage);
+}
+
+interface IBulletReceiver
+{
+    void TakeBulletDamage(int damage);
 }
