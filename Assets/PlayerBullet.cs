@@ -13,19 +13,16 @@ public class PlayerBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position, Direction, out var hit, Speed * Time.deltaTime))
+        if (Physics.Raycast(transform.position, Direction, out var hit, Speed * Time.deltaTime))
         {
             var bulletMod = hit.collider.GetComponentInParent<IBulletModifier>();
-            if(bulletMod != null){
-                print($"From {DamageValue}...");
-
+            if (bulletMod != null)
+            {
                 DamageValue = bulletMod.ModifyBulletDamage(DamageValue);
-
-                print($"To {DamageValue}!");
             }
 
             var bulletReceiver = hit.collider.GetComponentInParent<IBulletReceiver>();
-            if(bulletReceiver != null)
+            if (bulletReceiver != null)
             {
                 bulletReceiver.TakeBulletDamage(DamageValue);
                 NumBounces = 0;
@@ -50,8 +47,8 @@ public class PlayerBullet : MonoBehaviour
         {
             transform.position += Direction * Speed * Time.deltaTime;
         }
-        
-        
+
+
     }
 }
 

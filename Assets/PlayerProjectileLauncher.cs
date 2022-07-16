@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerProjectileLauncher : MonoBehaviour
 {
     public int NumBounces;
-    public Transform reticule;
+    public ReticuleController reticule;
     public PlayerBullet ProjectilePrefab;
     System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
 
@@ -19,7 +19,10 @@ public class PlayerProjectileLauncher : MonoBehaviour
     {
         var mouseRay = mainCam.Value.ScreenPointToRay(Input.mousePosition);
         var targetPoint = mouseRay.GetPoint((transform.position.y - mouseRay.origin.y) / mouseRay.direction.y);
-        reticule.position = targetPoint;
+
+        var inDirection = (targetPoint - transform.position).normalized;
+
+        reticule.DrawReticule(transform.position, inDirection);
 
         if (Input.GetButtonDown("Jump"))
         {
