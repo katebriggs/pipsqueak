@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86d3ac7e112f2b4dad8ba3b972ada16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  glow: {fileID: 9020997925775722729}
 --- !u!114 &8125270963436068739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +167,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Die
       objectReference: {fileID: 0}
+    - target: {fileID: 5005018937538865721, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5005018937538865721, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2060720429654177513, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
     - {fileID: 2633118072044688412, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
@@ -180,7 +189,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7497183087114116717, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
   m_PrefabInstance: {fileID: 1747639325}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &2027971209
+--- !u!64 &359444668515146948
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -194,3 +203,8 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8990406192022000377, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
+--- !u!1 &9020997925775722729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -202374112556935948, guid: 2bb893b37b819a243b8032d320f73dc5, type: 3}
+  m_PrefabInstance: {fileID: 1747639325}
+  m_PrefabAsset: {fileID: 0}

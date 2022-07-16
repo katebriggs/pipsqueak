@@ -8,11 +8,13 @@ public class Dice : MonoBehaviour
     Rigidbody rb;
     float timeSpentIdle;
     System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
+    public GameObject glow;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        glow.SetActive(false);
     }
 
     // Update is called once per frame
@@ -75,6 +77,8 @@ public class Dice : MonoBehaviour
         }
 
         FindObjectOfType<CombatManager>().EndState(CombatStateType.LetTheDiceSettle);
-
+        
+        glow.SetActive(true);
+        glow.transform.rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
     }
 }
