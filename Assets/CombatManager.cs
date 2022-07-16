@@ -37,6 +37,18 @@ public class CombatManager : MonoBehaviour
             stateIndex = newStateIndex;
         }
     }
+
+    public void LastState(CombatStateType combatStateType)
+    {
+        if (possibleStates[stateIndex].AssociatedState == combatStateType)
+        {
+            var newStateIndex = (stateIndex + possibleStates.Length - 1) % possibleStates.Length;
+            possibleStates[stateIndex].OnExit.Invoke();
+            possibleStates[newStateIndex].OnEnter.Invoke();
+            stateIndex = newStateIndex;
+        }
+    }
+
 }
 
 [System.Serializable]

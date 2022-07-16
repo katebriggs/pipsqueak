@@ -8,7 +8,7 @@ public class PlayerBullet : MonoBehaviour
     public int NumBounces = 3;
     public Vector3 Direction { get; set; }
 
-    int DamageValue = 1;
+    int DamageValue = 0;
 
     // Update is called once per frame
     void Update()

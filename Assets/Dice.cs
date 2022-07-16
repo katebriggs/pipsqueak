@@ -6,7 +6,8 @@ using UnityEngine;
 public class Dice : MonoBehaviour
 {
     Rigidbody rb;
-    float timeSpentIdle; 
+    float timeSpentIdle;
+    System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +48,22 @@ public class Dice : MonoBehaviour
         Vector3 targetPosition = RoundToNearest(transform.position);
         var miniAngles = transform.eulerAngles / 90f;
         Quaternion targetRotation = Quaternion.Euler(RoundToNearest(miniAngles) * 90);
+
+        if(targetPosition.y > 0.6f)
+        {
+            float timer = 0;
+            Vector3 returnPosition = mainCam.Value.transform.position - Vector3.up;
+            while (timer < 1)
+            {
+                timer += Time.deltaTime;
+                transform.position = Vector3.Lerp(targetPosition, returnPosition, timer);
+                yield return null;
+            }
+
+            FindObjectOfType<CombatManager>().LastState(CombatStateType.LetTheDiceSettle);
+            Destroy(gameObject);
+            yield break;
+        }
 
 
         while (Vector3.Distance(transform.position, targetPosition) > 0.001f

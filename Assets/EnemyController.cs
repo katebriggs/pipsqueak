@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float RedLightGreenLightTime = 2;
+
+    public void DoEnemyPhase()
     {
-        
+        StartCoroutine(EnemyPhaseCoroutine());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator EnemyPhaseCoroutine()
     {
-        
+        yield return new WaitForEndOfFrame();
+        var enemies = FindObjectsOfType<MoveTowardPlayer>();
+        foreach(var enemy in enemies)
+        {
+            enemy.SetEnabled(true);
+        }
+        yield return new WaitForSeconds(RedLightGreenLightTime);
+
+        foreach(var enemy in enemies)
+        {
+            enemy.SetEnabled(false);
+        }
+        FindObjectOfType<CombatManager>().EndState(CombatStateType.EnemyApproach);
     }
 }

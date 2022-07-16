@@ -1202,13 +1202,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 690715156, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 690715157, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6537877651319863299, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
       propertyPath: m_Name
       value: MrMeanie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537877651319863302, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
+      propertyPath: HP
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6537877651319863303, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
       propertyPath: m_RootOrder
@@ -1253,6 +1261,12 @@ PrefabInstance:
     - target: {fileID: 6537877651319863303, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537877652316887949, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
+      propertyPath: m_text
+      value: '6
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 884c7744c53b8ec4f97f958bc8c9c70e, type: 3}
@@ -1430,7 +1444,19 @@ MonoBehaviour:
     AssociatedState: 4
     OnEnter:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1475329646}
+          m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+          m_MethodName: DoEnemyPhase
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnExit:
       m_PersistentCalls:
         m_Calls:
@@ -1733,6 +1759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1ec85193955614f918cc0e7c53ed15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RedLightGreenLightTime: 1
 --- !u!4 &1475329647
 Transform:
   m_ObjectHideFlags: 0
