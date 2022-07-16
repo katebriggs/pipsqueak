@@ -50,5 +50,5 @@ public class CombatState
 
 public enum CombatStateType
 {
-    RollTheDice, LetTheDiceSettle, ReadySteadyAim, FireAway,
+    RollTheDice, LetTheDiceSettle, ReadySteadyAim, FireAway,EnemyApproach
 }

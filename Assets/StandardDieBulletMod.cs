@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StandardDieBulletMod : MonoBehaviour, IBulletModifier
 {
+    public DamageReadout DamageReadoutPrefab;
+
     public int Up;
     public int Down;
     public int Left;
@@ -14,12 +16,18 @@ public class StandardDieBulletMod : MonoBehaviour, IBulletModifier
 
     public int ModifyBulletDamage(int currentDamage)
     {
-        if (IsFaceUp(transform.up)) return currentDamage + Up;
-        if (IsFaceUp(-transform.up)) return currentDamage + Down;
-        if (IsFaceUp(transform.right)) return currentDamage + Right;
-        if (IsFaceUp(-transform.right)) return currentDamage + Left;
-        if (IsFaceUp(transform.forward)) return currentDamage + Forward;
-        if (IsFaceUp(-transform.forward)) return currentDamage + Back;
+        if (IsFaceUp(transform.up)) currentDamage= currentDamage + Up;
+        else if (IsFaceUp(-transform.up)) currentDamage =currentDamage + Down;
+        else if(IsFaceUp(transform.right)) currentDamage =currentDamage + Right;
+        else if (IsFaceUp(-transform.right)) currentDamage =currentDamage + Left;
+        else if (IsFaceUp(transform.forward)) currentDamage =currentDamage + Forward;
+        else if (IsFaceUp(-transform.forward)) currentDamage =currentDamage + Back;
+
+        var damageReadout = Instantiate(DamageReadoutPrefab, transform.position, Quaternion.identity);
+        damageReadout.SetText(currentDamage);
+
+        Destroy(gameObject);
+
         return currentDamage;
     }
 
