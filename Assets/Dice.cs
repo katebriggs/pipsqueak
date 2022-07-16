@@ -60,5 +60,8 @@ public class Dice : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, Time.deltaTime * 360);
             yield return new WaitForFixedUpdate();
         }
+
+        FindObjectOfType<CombatManager>().EndState(CombatStateType.LetTheDiceSettle);
+
     }
 }

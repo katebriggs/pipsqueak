@@ -30,6 +30,8 @@ public class DiceCannon : MonoBehaviour
             var dice = Instantiate(DicePrefab, transform.position, Quaternion.identity);
             dice.AddForce(GetFireDirection() * fireForce);
             dice.AddTorque(Random.onUnitSphere * spinForce);
+
+            FindObjectOfType<CombatManager>().EndState(CombatStateType.RollTheDice);
         }
     }
 
