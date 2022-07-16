@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +9,23 @@ public class MoveTowardPlayer : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     System.Lazy<Transform> playerTransform = new System.Lazy<Transform>(() => FindObjectOfType<PlayerProjectileLauncher>().transform);
 
+    private Animator _animator;
+    private static readonly int AnimParamKeyMoving = Animator.StringToHash("Moving");
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        _animator = GetComponentInChildren<Animator>();
         SetEnabled(false);
+    }
+
+    private void Update() {
+        _animator.SetBool(AnimParamKeyMoving, agent.velocity.sqrMagnitude > 0.01f);
     }
 
     public void SetEnabled(bool enabled)
     {
         agent.enabled = enabled;
-        if (enabled)
-        {
+        if (enabled) {
             agent.destination = playerTransform.Value.position;
         }
     }
