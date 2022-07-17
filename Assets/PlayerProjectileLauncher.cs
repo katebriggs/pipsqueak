@@ -23,8 +23,10 @@ public class PlayerProjectileLauncher : MonoBehaviour
     {
         var mouseRay = mainCam.Value.ScreenPointToRay(Input.mousePosition);
         var targetPoint = mouseRay.GetPoint((barrel.position.y - mouseRay.origin.y) / mouseRay.direction.y);
-        
-        transform.LookAt(targetPoint, Vector3.up);
+
+        Vector3 lookTarget = targetPoint;
+        lookTarget.y = transform.position.y;
+        transform.LookAt(lookTarget, Vector3.up);
 
         var inDirection = (targetPoint - barrel.position).normalized;
 

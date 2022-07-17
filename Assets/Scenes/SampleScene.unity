@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -326,6 +326,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1532751218344475397, guid: a4e47354571aceb4f9d3f3a2a15d5b86, type: 3}
   m_PrefabInstance: {fileID: 143003284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &155823351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8112875136370815282, guid: 185a32b7b1f944d45ba046493496db3e, type: 3}
+  m_PrefabInstance: {fileID: 2076967625}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &175290364
 GameObject:
@@ -1770,6 +1775,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1532751218344475397, guid: 683398578af0a964f816a716a1683344, type: 3}
   m_PrefabInstance: {fileID: 1260546848}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1265263806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1265263806, guid: ece3e2ca0d423ba43ac1f22fb3129f4a, type: 3}
+  m_PrefabInstance: {fileID: 5805615530000696440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312048271
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,7 +2027,71 @@ MonoBehaviour:
   maxHealth: 3
   whenUGetDed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1265263806}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1497347503}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1585582544}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 897509783}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  timeUntilEnd: 2
+  afterUGetDed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 155823351}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!23 &1313208228 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 5805615531044844508, guid: ece3e2ca0d423ba43ac1f22fb3129f4a, type: 3}
@@ -2162,10 +2236,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1ec85193955614f918cc0e7c53ed15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedLightGreenLightTime: 1
+  RedLightGreenLightTime: 4
   enemySpawns:
   - prefab: {fileID: 9121367936310023003, guid: d77d2d5a7ad9ad4439467a812182cd45, type: 3}
     turnCount: 0
+    pos: {fileID: 0}
+  - prefab: {fileID: 9121367936310023003, guid: d77d2d5a7ad9ad4439467a812182cd45, type: 3}
+    turnCount: 1
+    pos: {fileID: 0}
+  - prefab: {fileID: 9121367936310023003, guid: d77d2d5a7ad9ad4439467a812182cd45, type: 3}
+    turnCount: 2
+    pos: {fileID: 0}
+  - prefab: {fileID: 9121367936310023003, guid: d77d2d5a7ad9ad4439467a812182cd45, type: 3}
+    turnCount: 3
     pos: {fileID: 0}
   TableFloor: {fileID: 782169077}
   allEnemyPrefabs:
@@ -2249,6 +2332,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 1532751218344475397, guid: 683398578af0a964f816a716a1683344, type: 3}
   m_PrefabInstance: {fileID: 1488196376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1497347503 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1360815056342671790, guid: ece3e2ca0d423ba43ac1f22fb3129f4a, type: 3}
+  m_PrefabInstance: {fileID: 5805615530000696440}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1568183590
 PrefabInstance:
@@ -2419,7 +2507,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784911, y: 1}
+    m_SensorSize: {x: 1.5162288, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

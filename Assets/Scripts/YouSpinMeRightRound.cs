@@ -9,7 +9,7 @@ public class YouSpinMeRightRound : MonoBehaviour {
     private Quaternion startRotation;
     
     private void Start() {
-        startRotation = transform.rotation;
+        startRotation = transform.localRotation;
     }
 
     private void Update() {
@@ -17,6 +17,6 @@ public class YouSpinMeRightRound : MonoBehaviour {
     }
 
     private void OnDisable() {
-        transform.rotation = startRotation;
+        transform.localRotation = startRotation;
     }
 }

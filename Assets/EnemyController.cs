@@ -57,7 +57,7 @@ public class EnemyController : MonoBehaviour
 
         foreach(var enemy in enemies)
         {
-            enemy.SetEnabled(false);
+            if (enemy) enemy.SetEnabled(false);
         }
         FindObjectOfType<CombatManager>().EndState(CombatStateType.EnemyApproach);
 
