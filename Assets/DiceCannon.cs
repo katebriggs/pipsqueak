@@ -14,6 +14,10 @@ public class DiceCannon : MonoBehaviour
     bool isFireHeld;
     float holdTime;
 
+    [SerializeField]Transform handTransform;
+    Vector3 initialHandPosition;
+    [SerializeField] AudioSource diceShakeSource;
+    [SerializeField] AudioSource diceRollSource;
 
     System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
 
@@ -24,6 +28,7 @@ public class DiceCannon : MonoBehaviour
     void Start()
     {
         _animator = GetComponentInChildren<Animator>();
+        initialHandPosition = handTransform.position;
     }
 
     // Update is called once per frame
@@ -39,13 +44,21 @@ public class DiceCannon : MonoBehaviour
         {
             isFireHeld = true;
             holdTime = 0;
+            diceShakeSource.Play();
         }
 
-        if (isFireHeld) holdTime += Time.deltaTime;
+        if (isFireHeld)
+        {
+            handTransform.position = initialHandPosition + (Random.onUnitSphere * 0.1f);
+            holdTime += Time.deltaTime;
+        }
 
         if (isFireHeld && (Input.GetButtonUp("Jump") || Input.GetButtonUp("Fire1") || holdTime >= 1))
         {
-            isFireHeld = false; 
+            isFireHeld = false;
+            handTransform.position = initialHandPosition;
+            diceShakeSource.Stop();
+            diceRollSource.Play();
 
             _isCreatingDice = true;
             _animator.SetTrigger(Throw);
