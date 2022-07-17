@@ -42,11 +42,25 @@ public class EnemyController : MonoBehaviour
     IEnumerator EnemyPhaseCoroutine()
     {
         yield return new WaitForEndOfFrame();
+        
+        turnIndex++;
 
-        if (currentEnemy < enemySpawns.Length && turnIndex >= enemySpawns[currentEnemy].turnCount) {
-            SpawnEnemy(currentEnemy);
-            currentEnemy++;
+        int enemyCount = FindObjectsOfType<Enemy>().Length;
+        bool hasSpawned = false;
+
+        while (true) {
+            while (currentEnemy < enemySpawns.Length && turnIndex >= enemySpawns[currentEnemy].turnCount) {
+                SpawnEnemy(currentEnemy);
+                currentEnemy++;
+                hasSpawned = true;
+            }
+
+            if (hasSpawned || enemyCount > 0) break;
+            
+            // If we have not spawned any enemies and none existed at the start of the turn, skip to the next wave.
+            turnIndex++;
         }
+        
         
         var enemies = FindObjectsOfType<MoveTowardPlayer>();
         foreach(var enemy in enemies)
@@ -60,8 +74,6 @@ public class EnemyController : MonoBehaviour
             if (enemy) enemy.SetEnabled(false);
         }
         FindObjectOfType<CombatManager>().EndState(CombatStateType.EnemyApproach);
-
-        turnIndex++;
     }
 
     void SpawnEnemy(int index)

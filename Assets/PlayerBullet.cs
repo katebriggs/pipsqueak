@@ -46,7 +46,8 @@ public class PlayerBullet : MonoBehaviour
             {
                 var ppl = FindObjectOfType<PlayerProjectileLauncher>();
                 CombatManager combatManager = FindObjectOfType<CombatManager>();
-                if (ppl.AmmoCount == 0) {
+                Enemy[] enemies = FindObjectsOfType<Enemy>();
+                if (ppl.AmmoCount == 0 || enemies.Length == 0 || (enemies.Length == 1 && enemies[0] == bulletReceiver && enemies[0].HP <= 0)) {
                     combatManager.EndState(CombatStateType.FireAway);
                 }
                 else

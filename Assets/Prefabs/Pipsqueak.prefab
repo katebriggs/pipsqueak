@@ -9891,6 +9891,8 @@ MonoBehaviour:
   reticule: {fileID: 5805615531044844511}
   ProjectilePrefab: {fileID: 7704286041638617138, guid: 616d35020c610f4489bb70978bfbc846, type: 3}
   barrel: {fileID: 1788769124}
+  MaxAmmo: 3
+  AmmoCount: 6
 --- !u!1 &5805615531044844505
 GameObject:
   m_ObjectHideFlags: 0
