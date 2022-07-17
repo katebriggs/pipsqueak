@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class EnemySpawn {
     public Enemy prefab;
     public int turnCount;
-    public int corner;
+    public Transform pos;
 }
 
 public class EnemyController : MonoBehaviour
@@ -67,12 +67,11 @@ public class EnemyController : MonoBehaviour
     void SpawnEnemy(int index)
     {
         bool foundSpawnPos; 
-        do
-        {
-            var angleOffset = enemySpawns[index].corner * 90;
-            var targetPosition = Quaternion.Euler(0, angleOffset, 0) * new Vector3(9, 0, 9);
+        do {
+            Transform targetPos = enemySpawns[index].pos;
+            if (!targetPos) targetPos = transform;
 
-            foundSpawnPos = NavMesh.SamplePosition(TableFloor.position + targetPosition, out var hit, 2, NavMesh.AllAreas);
+            foundSpawnPos = NavMesh.SamplePosition(targetPos.position, out var hit, 2, NavMesh.AllAreas);
             if (foundSpawnPos)
             {
                 Instantiate(enemySpawns[index].prefab, hit.position + Vector3.up, Quaternion.identity);

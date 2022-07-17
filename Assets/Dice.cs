@@ -15,6 +15,9 @@ public class Dice : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         glow.SetActive(false);
+        if (rb.isKinematic) {
+            StartCoroutine(SnapToGrid());
+        }
     }
 
     // Update is called once per frame
