@@ -66,7 +66,7 @@ public class Dice : MonoBehaviour
             while (timer < 1)
             {
                 timer += Time.deltaTime;
-                transform.position = Vector3.Lerp(targetPosition, returnPosition, timer);
+                transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, timer);
                 yield return null;
             }
 
