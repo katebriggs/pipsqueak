@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLives: 3
-  lives: 1
+  lives: 3
   lifeViews:
   - {fileID: 4433294481090697738}
   - {fileID: 5264512209992609847}

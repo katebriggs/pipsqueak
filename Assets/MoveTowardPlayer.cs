@@ -20,6 +20,12 @@ public class MoveTowardPlayer : MonoBehaviour
 
     private void Update() {
         _animator.SetBool(AnimParamKeyMoving, agent.velocity.sqrMagnitude > 0.01f);
+
+        if (transform.position.magnitude < 0.25f)
+        {
+            FindObjectOfType<PlayerHealth>().Ouchie();
+            Destroy(gameObject);
+        }
     }
 
     public void SetEnabled(bool enabled)

@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class LivesPanel : MonoBehaviour {
     public int maxLives = 3;
-    public int lives = 2;
+    public int lives = 3;
 
     public LifeView[] lifeViews;
+
+    private void Start()
+    {
+        lives = maxLives;
+    }
 
     private void Update() {
         for (int i = 0; i < lifeViews.Length; i++) {

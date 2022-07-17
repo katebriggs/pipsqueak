@@ -9814,5 +9814,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   axis: {x: 0, y: 1, z: 0}
-  speed: 360
+  speed: 90
   space: 1
