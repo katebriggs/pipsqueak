@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour, IBulletReceiver
                     float angle = anglePer * i;
                 
                     Enemy prefab = enemiesToSpawn[i];
-                    Vector3 targetPosition = Quaternion.Euler(0, angle, 0) * new Vector3(2, 0, 0);
+                    Vector3 targetPosition = Quaternion.Euler(0, angle, 0) * new Vector3(1, 0, 0);
 
                     bool foundSpawnPos = NavMesh.SamplePosition(transform.position + targetPosition,
                                                                 out var hit, 2, NavMesh.AllAreas);

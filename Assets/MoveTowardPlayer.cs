@@ -21,7 +21,7 @@ public class MoveTowardPlayer : MonoBehaviour
     private void Update() {
         _animator.SetBool(AnimParamKeyMoving, agent.velocity.sqrMagnitude > 0.01f);
 
-        if (transform.position.magnitude < 0.25f)
+        if (Vector3.SqrMagnitude(transform.position - playerTransform.Value.position) < 1)
         {
             FindObjectOfType<PlayerHealth>().Ouchie();
             Destroy(gameObject);

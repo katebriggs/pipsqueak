@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 11.12
-  NumBounces: 3
+  NumBounces: 5
   modulatableSoundPrefab: {fileID: 2129628187704312865, guid: 468f9a3f2b2c76b4a861f84209fe5afe, type: 3}
   hitDieClip: {fileID: 8300000, guid: c95ffcc9888a8754db526c0aa5807556, type: 3}
 --- !u!82 &-3268885505261661457

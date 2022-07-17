@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerHealth : MonoBehaviour
 {
-
     [SerializeField] LivesPanel LivesPanel;
     [SerializeField] int maxHealth;
+
+    public UnityEvent whenUGetDed;
 
     int remainingHealth;
 
@@ -19,5 +21,6 @@ public class PlayerHealth : MonoBehaviour
     {
         remainingHealth--;
         LivesPanel.lives = remainingHealth;
+        whenUGetDed?.Invoke();
     }
 }
