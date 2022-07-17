@@ -7,8 +7,13 @@ public class PlayerBullet : MonoBehaviour
     public float Speed;
     public int NumBounces = 3;
     public Vector3 Direction { get; set; }
+    [SerializeField] ModulatableSound modulatableSoundPrefab;
+    [SerializeField] AudioClip hitDieClip;
+
+    readonly float frequencyPitchBase = Mathf.Pow(2, 1f / 12);
 
     int DamageValue = 0;
+
 
     // Update is called once per frame
     void Update()
@@ -19,11 +24,19 @@ public class PlayerBullet : MonoBehaviour
             if (bulletMod != null)
             {
                 DamageValue = bulletMod.ModifyBulletDamage(DamageValue);
+                float pitch = CalculatePitch(3- NumBounces);
+                Instantiate(modulatableSoundPrefab).Play(hitDieClip, pitch);
             }
 
             var bulletReceiver = hit.collider.GetComponentInParent<IBulletReceiver>();
             if (bulletReceiver != null)
             {
+                int steps = 3 - NumBounces;
+                float basePitch = CalculatePitch(steps);
+                float subPitch = CalculatePitch(steps + 1);
+                float superPitch = CalculatePitch(steps + 2);
+                Instantiate(modulatableSoundPrefab).PlayScale(hitDieClip, new float[] { basePitch,subPitch,superPitch}, 0.1f);
+
                 bulletReceiver.TakeBulletDamage(DamageValue);
                 NumBounces = 0;
             }
@@ -49,6 +62,11 @@ public class PlayerBullet : MonoBehaviour
         }
 
 
+    }
+
+    private float CalculatePitch(int steps)
+    {
+        return Mathf.Pow(frequencyPitchBase, steps);
     }
 }
 
