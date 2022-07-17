@@ -34,6 +34,11 @@ public class Dice : MonoBehaviour
                 StartCoroutine(SnapToGrid());
             }
         }
+        else if (transform.position.y < -1)
+        {
+            rb.isKinematic = true;
+            StartCoroutine(SnapToGrid());
+        }
         else
         {
             timeSpentIdle = 0;
@@ -51,7 +56,7 @@ public class Dice : MonoBehaviour
         var miniAngles = transform.eulerAngles / 90f;
         Quaternion targetRotation = Quaternion.Euler(RoundToNearest(miniAngles) * 90);
 
-        if(targetPosition.y > 0.6f)
+        if(targetPosition.y > 0.6f || targetPosition.y < 0)
         {
             float timer = 0;
             Vector3 returnPosition = mainCam.Value.transform.position - Vector3.up;
