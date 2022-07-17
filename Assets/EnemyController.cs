@@ -55,13 +55,12 @@ public class EnemyController : MonoBehaviour
                 hasSpawned = true;
             }
 
-            if (hasSpawned || enemyCount > 0) break;
+            if (currentEnemy >= enemySpawns.Length || hasSpawned || enemyCount > 0) break;
             
             // If we have not spawned any enemies and none existed at the start of the turn, skip to the next wave.
             turnIndex++;
         }
-        
-        
+
         var enemies = FindObjectsOfType<MoveTowardPlayer>();
         foreach(var enemy in enemies)
         {
