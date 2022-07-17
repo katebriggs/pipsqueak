@@ -6121,8 +6121,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Sounds\n\nBullet Sound- \nhttps://freesound.org/people/milton./sounds/99993/\nMenu
     BGM-\nhttps://freesound.org/people/edtijo/sounds/241071/\nIn-Game BGM - \nhttps://freesound.org/people/sonically_sound/sounds/624874/\nDice
-    Shake - \nhttps://freesound.org/people/Zaxtor99/sounds/147530/\nDice Roll-\nhttps://freesound.org/people/dermotte/sounds/220744/\n\n\nBullet
-    Icon from SmashIcons via flaticon\n"
+    Shake - \nhttps://freesound.org/people/Zaxtor99/sounds/147530/\nDice Roll-\nhttps://freesound.org/people/dermotte/sounds/220744/\nBullet
+    Hitting Wood-\nhttps://freesound.org/people/150112/sounds/324737/\nBullet Hitting
+    Enemy-\nhttps://freesound.org/people/toxicwafflezz/sounds/150839/\n\nBullet Icon
+    from SmashIcons via flaticon\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

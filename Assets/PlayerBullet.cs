@@ -9,17 +9,22 @@ public class PlayerBullet : MonoBehaviour
     public Vector3 Direction { get; set; }
     [SerializeField] ModulatableSound modulatableSoundPrefab;
     [SerializeField] AudioClip hitDieClip;
+    [SerializeField] AudioClip hitWoodClip;
+    [SerializeField] AudioClip hitEnemyClip;
 
     readonly float frequencyPitchBase = Mathf.Pow(2, 1f / 12);
 
     int DamageValue = 0;
-
+    Collider lastCollider;
 
     // Update is called once per frame
     void Update()
     {
         if (Physics.Raycast(transform.position, Direction, out var hit, Speed * Time.deltaTime))
         {
+            if (hit.collider == lastCollider) return;
+            lastCollider = hit.collider;
+
             var bulletMod = hit.collider.GetComponentInParent<IBulletModifier>();
             if (bulletMod != null)
             {
@@ -31,16 +36,18 @@ public class PlayerBullet : MonoBehaviour
             var bulletReceiver = hit.collider.GetComponentInParent<IBulletReceiver>();
             if (bulletReceiver != null)
             {
-                int steps = 3 - NumBounces;
-                float basePitch = CalculatePitch(steps);
-                float subPitch = CalculatePitch(steps + 1);
-                float superPitch = CalculatePitch(steps + 2);
-                Instantiate(modulatableSoundPrefab).PlayScale(hitDieClip, new float[] { basePitch,subPitch,superPitch}, 0.1f);
+                int steps = 3 - NumBounces; 
+                Instantiate(modulatableSoundPrefab).Play(hitEnemyClip, 1.5f);
 
                 bulletReceiver.TakeBulletDamage(DamageValue);
                 NumBounces = 0;
             }
 
+            if(bulletMod == null && bulletReceiver == null)
+            {
+                Instantiate(modulatableSoundPrefab).Play(hitWoodClip, 1);
+            }
+              
             NumBounces--;
             if (NumBounces < 0)
             {
@@ -59,9 +66,9 @@ public class PlayerBullet : MonoBehaviour
             else
             {
                 var normal = hit.normal;
-                normal.y = 0;
+                normal.y = 0; 
                 Direction = Vector3.Reflect(Direction, normal);
-            }
+            } 
 
             transform.position = hit.point + (Direction * Speed * Time.deltaTime);
         }

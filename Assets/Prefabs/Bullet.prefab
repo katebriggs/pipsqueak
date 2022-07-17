@@ -93,7 +93,7 @@ SphereCollider:
   m_GameObject: {fileID: 7027556161167307351}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -247,6 +247,8 @@ MonoBehaviour:
   NumBounces: 5
   modulatableSoundPrefab: {fileID: 2129628187704312865, guid: 468f9a3f2b2c76b4a861f84209fe5afe, type: 3}
   hitDieClip: {fileID: 8300000, guid: c95ffcc9888a8754db526c0aa5807556, type: 3}
+  hitWoodClip: {fileID: 8300000, guid: a698950703c7be04687902f19ac50348, type: 3}
+  hitEnemyClip: {fileID: 8300000, guid: b8dc136fbdd5dde4e8a78f8054203c39, type: 3}
 --- !u!82 &-3268885505261661457
 AudioSource:
   m_ObjectHideFlags: 0
