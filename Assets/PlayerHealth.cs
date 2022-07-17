@@ -9,18 +9,32 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int maxHealth;
 
     public UnityEvent whenUGetDed;
+    public float timeUntilEnd;
+    public UnityEvent afterUGetDed;
 
     int remainingHealth;
 
     private void Start()
     {
         remainingHealth = maxHealth;
+        LivesPanel.lives = remainingHealth;
     }
 
     public void Ouchie()
     {
         remainingHealth--;
         LivesPanel.lives = remainingHealth;
-        whenUGetDed?.Invoke();
+
+        if (remainingHealth <= 0) {
+            whenUGetDed?.Invoke();
+            foreach (Enemy enemy in FindObjectsOfType<Enemy>()) {
+                Destroy(enemy.gameObject);
+            }
+            Invoke(nameof(DoTheTHingAfterDed), timeUntilEnd);
+        }
+    }
+
+    private void DoTheTHingAfterDed() {
+        afterUGetDed?.Invoke();
     }
 }
