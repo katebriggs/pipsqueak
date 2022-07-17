@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,12 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IBulletReceiver
 {
     public int HP;
+
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.F11)) {
+            TakeBulletDamage(10000);
+        }
+    }
 
     public void TakeBulletDamage(int damage) {
         if (damage <= 0) return;
