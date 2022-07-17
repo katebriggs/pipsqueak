@@ -7,6 +7,11 @@ public class Enemy : MonoBehaviour, IBulletReceiver
     public int HP;
     public TMPro.TMP_Text HPReadout;
 
+    private void Start()
+    {
+        HPReadout.text = HP.ToString();
+    }
+
     public void TakeBulletDamage(int damage)
     {
         HP -= damage;
