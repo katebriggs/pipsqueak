@@ -44,7 +44,15 @@ public class PlayerBullet : MonoBehaviour
             NumBounces--;
             if (NumBounces < 0)
             {
-                FindObjectOfType<CombatManager>().EndState(CombatStateType.FireAway);
+                var ppl = FindObjectOfType<PlayerProjectileLauncher>();
+                CombatManager combatManager = FindObjectOfType<CombatManager>();
+                if (ppl.AmmoCount == 0) {
+                    combatManager.EndState(CombatStateType.FireAway);
+                }
+                else
+                {
+                    combatManager.LastState(CombatStateType.FireAway);
+                }
                 Destroy(gameObject);
             }
             else

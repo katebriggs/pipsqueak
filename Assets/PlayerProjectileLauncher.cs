@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class PlayerProjectileLauncher : MonoBehaviour
     public PlayerBullet ProjectilePrefab;
     System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
     public Transform barrel;
+    public int MaxAmmo = 6;
+    [HideInInspector] public int AmmoCount = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -27,12 +30,26 @@ public class PlayerProjectileLauncher : MonoBehaviour
 
         reticule.DrawReticule(barrel.position, inDirection);
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1"))
         {
             var bullet = Instantiate(ProjectilePrefab, barrel.position, Quaternion.identity);
             bullet.Direction = (targetPoint - barrel.position).normalized;
 
-            FindObjectOfType<CombatManager>().EndState(CombatStateType.ReadySteadyAim);
+            var combatManager = FindObjectOfType<CombatManager>();
+            
+            combatManager.EndState(CombatStateType.ReadySteadyAim);
+            SetAmmoCount(AmmoCount - 1);
         }
+    }
+
+    public void Reload()
+    {
+        SetAmmoCount(MaxAmmo);
+    }
+
+    private void SetAmmoCount(int ammo)
+    {
+        AmmoCount = ammo;
+        FindObjectOfType<AmmoPanel>()?.SetCount(ammo);
     }
 }

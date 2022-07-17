@@ -62,7 +62,7 @@ public class Dice : MonoBehaviour
         if(targetPosition.y > 0.6f || targetPosition.y < 0)
         {
             float timer = 0;
-            Vector3 returnPosition = mainCam.Value.transform.position - Vector3.up;
+            Vector3 returnPosition = mainCam.Value.transform.position - Vector3.up * 10;
             while (timer < 1)
             {
                 timer += Time.deltaTime;
@@ -70,7 +70,7 @@ public class Dice : MonoBehaviour
                 yield return null;
             }
 
-            FindObjectOfType<CombatManager>().LastState(CombatStateType.LetTheDiceSettle);
+            //FindObjectOfType<CombatManager>().LastState(CombatStateType.LetTheDiceSettle);
             Destroy(gameObject);
             yield break;
         }

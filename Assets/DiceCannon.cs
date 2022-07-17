@@ -11,6 +11,9 @@ public class DiceCannon : MonoBehaviour
     public float diceDelay = 0.5f;
 
     private Animator _animator;
+    bool isFireHeld;
+    float holdTime;
+
 
     System.Lazy<Camera> mainCam = new System.Lazy<Camera>(() => Camera.main);
 
@@ -18,29 +21,45 @@ public class DiceCannon : MonoBehaviour
     private static readonly int Throw = Animator.StringToHash("Throw");
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         _animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (_isCreatingDice) return;
         var mouseRay = mainCam.Value.ScreenPointToRay(Input.mousePosition);
         var targetPoint = mouseRay.GetPoint((transform.position.y - mouseRay.origin.y) / mouseRay.direction.y);
 
         transform.rotation = Quaternion.LookRotation(targetPoint - transform.position);
 
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")) {
+        if(!_isCreatingDice && !isFireHeld && (Input.GetButtonDown("Jump") || Input.GetButtonDown("Fire1")))
+        {
+            isFireHeld = true;
+            holdTime = 0;
+        }
+
+        if (isFireHeld) holdTime += Time.deltaTime;
+
+        if (isFireHeld && (Input.GetButtonUp("Jump") || Input.GetButtonUp("Fire1") || holdTime >= 1))
+        {
+            isFireHeld = false; 
+
             _isCreatingDice = true;
             _animator.SetTrigger(Throw);
             Invoke(nameof(CreateDice), diceDelay);
+            Invoke(nameof(CreateDice), diceDelay + 0.1f);
+            Invoke(nameof(CreateDice), diceDelay + 0.2f);
         }
     }
 
-    private void CreateDice() {
+    private void CreateDice()
+    {
         _isCreatingDice = false;
         var dice = Instantiate(DicePrefab, transform.position, Quaternion.identity);
-        dice.AddForce(GetFireDirection() * fireForce);
+        dice.AddForce(GetFireDirection() * fireForce * Mathf.Lerp(0.5f,1.1f, holdTime));
         dice.AddTorque(Random.onUnitSphere * spinForce);
 
         FindObjectOfType<CombatManager>().EndState(CombatStateType.RollTheDice);
@@ -48,6 +67,6 @@ public class DiceCannon : MonoBehaviour
 
     Vector3 GetFireDirection()
     {
-        return transform.forward;
+        return transform.forward + Random.onUnitSphere / 10f;
     }
 }
