@@ -70,7 +70,7 @@ public class Dice : MonoBehaviour
                 yield return null;
             }
 
-            //FindObjectOfType<CombatManager>().LastState(CombatStateType.LetTheDiceSettle);
+            FindObjectOfType<CombatManager>().EndState(CombatStateType.LetTheDiceSettle);
             Destroy(gameObject);
             yield break;
         }
